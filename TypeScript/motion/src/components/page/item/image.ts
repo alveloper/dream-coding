@@ -1,15 +1,13 @@
-export class ImageComponent {
-  // 내부적으로 어떤 요소를 만들고, attachTo라는 함수도 같이 만들 것임
-  private element: HTMLElement;
+import { BaseComponent } from "./../../component.js";
+
+export class ImageComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
-    const template = document.createElement("template");
-    template.innerHTML = `<section class="image">
-    <div class="image__holder">
-      <img class="image__thumnail">
-      <p class="image__title"></p>
-    </div>
-  </section>`;
-    this.element = template.content.firstElementChild! as HTMLElement;
+    super(`<section class="image">
+            <div class="image__holder">
+              <img class="image__thumnail">
+              <p class="image__title"></p>
+            </div>
+          </section>`);
 
     const imageElement = this.element.querySelector(
       ".image__thumnail"
@@ -21,9 +19,5 @@ export class ImageComponent {
       ".image__title"
     )! as HTMLParagraphElement;
     titleElement.textContent = title;
-  }
-
-  attachTo(parent: HTMLElement, position: InsertPosition = "afterbegin") {
-    parent.insertAdjacentElement(position, this.element);
   }
 }
