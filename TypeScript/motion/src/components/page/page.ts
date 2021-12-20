@@ -1,4 +1,5 @@
 export class PageComponent {
+  // element라는 내부 스테이트가 있음
   private element: HTMLUListElement;
   constructor() {
     // page component를 만들면 즉시
